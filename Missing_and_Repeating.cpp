@@ -9,28 +9,23 @@ class Solution {
   public:
     vector<int> findTwoElement(vector<int> arr) {
         // code here
-        map<int,int> mp;
+        map<int, int> mp;
+        vector<int> v;
         for(int i=0; i<arr.size(); i++){
-            mp[arr[i]]++;
-        }
-        vector<int> p;
-        for(auto j: mp){
-            if(j.second==2){
-                p.push_back(j.first);
-            }
-        }
-        int m = 1;
-        for(int i=0; i<arr.size(); i++){
-            if(mp.find(m)==mp.end()){
-                p.push_back(m);
-                break;
+            if(mp.find(arr[i])==mp.end()){
+                mp[arr[i]]++;
             }
             else{
-                m = m + 1;
+                v.push_back(arr[i]);
             }
         }
-        
-        return p;
+        for(int i=1; i<=arr.size(); i++){
+            if(mp.find(i)==mp.end()){
+                v.push_back(i);
+                break;
+            }
+        }
+        return v;
     }
 };
 
